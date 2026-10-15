@@ -1,0 +1,123 @@
+{
+  "entities": {
+    "ChessRoom": {
+      "title": "ChessRoom",
+      "description": "Real-time chess multiplayer match room",
+      "type": "object",
+      "properties": {
+        "roomId": {
+          "type": "string",
+          "description": "Unique 6-character room code"
+        },
+        "hostPlayerId": {
+          "type": "string",
+          "description": "User ID of the match host"
+        },
+        "hostPlayerName": {
+          "type": "string",
+          "description": "Display name of the host"
+        },
+        "guestPlayerId": {
+          "type": "string",
+          "description": "User ID of the guest player"
+        },
+        "guestPlayerName": {
+          "type": "string",
+          "description": "Display name of the guest player"
+        },
+        "whitePlayerId": {
+          "type": "string",
+          "description": "User ID playing as White"
+        },
+        "blackPlayerId": {
+          "type": "string",
+          "description": "User ID playing as Black"
+        },
+        "currentFen": {
+          "type": "string",
+          "description": "Current FEN string of the game board"
+        },
+        "lastMoveUci": {
+          "type": "string",
+          "description": "Last move played in UCI notation"
+        },
+        "lastMoveSan": {
+          "type": "string",
+          "description": "Last move played in Standard Algebraic Notation"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["WAITING", "PLAYING", "FINISHED"],
+          "description": "Current status of the multiplayer room"
+        },
+        "winner": {
+          "type": "string",
+          "description": "Winner of the match: WHITE, BLACK, or DRAW"
+        },
+        "timeControlName": {
+          "type": "string",
+          "description": "Name of the time control preset"
+        },
+        "whiteTimeSeconds": {
+          "type": "number",
+          "description": "Remaining clock time for White in seconds"
+        },
+        "blackTimeSeconds": {
+          "type": "number",
+          "description": "Remaining clock time for Black in seconds"
+        },
+        "lastMoveTimestamp": {
+          "type": "number",
+          "description": "Timestamp when the last move was made"
+        }
+      },
+      "required": ["roomId", "hostPlayerId", "status", "currentFen"]
+    },
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Player profile and chess statistics",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Unique user ID"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Player screen name"
+        },
+        "email": {
+          "type": "string",
+          "description": "Player email"
+        },
+        "rating": {
+          "type": "number",
+          "description": "Current player rating"
+        },
+        "gamesPlayed": {
+          "type": "number",
+          "description": "Total games completed"
+        },
+        "gamesWon": {
+          "type": "number",
+          "description": "Total games won"
+        }
+      },
+      "required": ["userId", "displayName"]
+    }
+  },
+  "firestore": {
+    "/chess_rooms/{roomId}": {
+      "schema": {
+        "$ref": "#/entities/ChessRoom"
+      },
+      "description": "Active multiplayer chess rooms"
+    },
+    "/users/{userId}": {
+      "schema": {
+        "$ref": "#/entities/UserProfile"
+      },
+      "description": "Player profile documents"
+    }
+  }
+}

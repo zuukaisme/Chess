@@ -1,0 +1,6 @@
+{
+  "name": "Chess Master",
+  "description": "Professional chess application featuring Stockfish AI engine, PvP, AI vs AI, real-time multiplayer, evaluation bar, puzzles, and multiple board themes.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
